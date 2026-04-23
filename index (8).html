@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>$JOLLY</title>
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html, body {
+            height: 100%;
+            overflow: hidden;
+            background: #000;
+            font-family: Arial, sans-serif;
+        }
+
+        #bgVideo {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: 0;
+        }
+
+        /* Enter Screen - Simple Sky Blue */
+        .enter-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #87CEEB;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+            cursor: pointer;
+        }
+
+        .enter-text {
+            font-size: 2rem;
+            font-weight: bold;
+            letter-spacing: 5px;
+            text-transform: uppercase;
+            background: linear-gradient(90deg, #ff0000, #ff7f00, #ffff00, #00ff00, #0000ff, #4b0082, #9400d3);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.7; }
+        }
+
+        .enter-screen.hidden {
+            display: none;
+        }
+
+        /* Sidebar */
+        .sidebar {
+            position: fixed;
+            left: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+            z-index: 100;
+        }
+
+        .icon {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-decoration: none;
+            padding: 15px;
+            transition: all 0.2s ease;
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 15px;
+        }
+
+        .icon:hover {
+            transform: scale(1.1);
+            background: rgba(0, 0, 0, 0.5);
+        }
+
+        .icon svg {
+            width: 80px;
+            height: 80px;
+        }
+
+        .icon.instagram svg {
+            fill: url(#instagram-gradient);
+        }
+
+        .icon.x-btn svg {
+            fill: #fff;
+        }
+
+        .icon span {
+            margin-top: 8px;
+            font-size: 14px;
+            color: #fff;
+            font-weight: bold;
+            text-shadow: 0 1px 3px rgba(0,0,0,0.8);
+        }
+
+        /* Sound button */
+        .sound-btn {
+            position: fixed;
+            bottom: 15px;
+            right: 15px;
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.9);
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 100;
+            transition: all 0.2s ease;
+        }
+
+        .sound-btn:hover {
+            transform: scale(1.1);
+        }
+
+        .sound-btn svg {
+            width: 24px;
+            height: 24px;
+            fill: #000;
+        }
+
+        /* About button */
+        .about-btn {
+            position: fixed;
+            bottom: 0;
+            right: 0;
+            z-index: 100;
+        }
+
+        .about-btn a {
+            display: block;
+            padding: 50px 120px;
+            background: rgba(0, 0, 0, 0.85);
+            color: #fff;
+            text-decoration: none;
+            font-size: 1.3rem;
+            font-weight: bold;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            transition: all 0.3s ease;
+        }
+
+        .about-btn a:hover {
+            background: rgba(0, 0, 0, 1);
+        }
+    </style>
+</head>
+<body>
+    <audio id="bgMusic" loop>
+        <source src="boba_date___cute_background_music__royalty_free_.mp3" type="audio/mpeg">
+    </audio>
+
+    <video id="bgVideo" autoplay loop muted playsinline>
+        <source src="kling_20260424_作品_just_bring_491_0.mp4" type="video/mp4">
+    </video>
+
+    <!-- Click to Enter - Simple -->
+    <div class="enter-screen" id="enterScreen">
+        <div class="enter-text">click to enter</div>
+    </div>
+
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <a href="https://www.instagram.com/jollysolana/" class="icon instagram" target="_blank">
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <defs>
+                    <linearGradient id="instagram-gradient" x1="0%" y1="100%" x2="100%" y2="0%">
+                        <stop offset="0%" style="stop-color:#FFDC80"/>
+                        <stop offset="25%" style="stop-color:#F77737"/>
+                        <stop offset="50%" style="stop-color:#E1306C"/>
+                        <stop offset="75%" style="stop-color:#C13584"/>
+                        <stop offset="100%" style="stop-color:#833AB4"/>
+                    </linearGradient>
+                </defs>
+                <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" fill="url(#instagram-gradient)"/>
+            </svg>
+            <span>Instagram</span>
+        </a>
+
+        <a href="https://x.com/JollyPumpfun" class="icon x-btn" target="_blank">
+            <svg viewBox="0 0 24 24">
+                <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+            </svg>
+            <span>X</span>
+        </a>
+    </div>
+
+    <!-- About Button -->
+    <div class="about-btn">
+        <a href="about.html">ABOUT</a>
+    </div>
+
+    <!-- Sound Button -->
+    <button class="sound-btn" id="soundBtn">
+        <svg viewBox="0 0 24 24" id="soundIcon">
+            <path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/>
+        </svg>
+    </button>
+
+    <script>
+        const enterScreen = document.getElementById('enterScreen');
+        const music = document.getElementById('bgMusic');
+        const video = document.getElementById('bgVideo');
+        const soundBtn = document.getElementById('soundBtn');
+        let playing = false;
+
+        enterScreen.onclick = () => {
+            music.play();
+            video.play();
+            playing = true;
+            enterScreen.classList.add('hidden');
+        };
+
+        soundBtn.onclick = () => {
+            if (playing) {
+                music.pause();
+                playing = false;
+                soundBtn.innerHTML = '<svg viewBox="0 0 24 24"><path d="M16.5 12c0-1.77-1.02-3.29-2.5-4.03v2.21l2.45 2.45c.03-.2.05-.41.05-.63zm2.5 0c0 .94-.2 1.82-.54 2.64l1.51 1.51C20.63 14.91 21 13.5 21 12c0-4.28-2.99-7.86-7-8.77v2.06c2.89.86 5 3.54 5 6.71zM4.27 3L3 4.27 7.73 9H3v6h4l5 5v-6.73l4.25 4.25c-.67.52-1.42.93-2.25 1.18v2.06c1.38-.31 2.63-.95 3.69-1.81L19.73 21 21 19.73l-9-9L4.27 3zM12 4L9.91 6.09 12 8.18V4z" fill="#000"/></svg>';
+            } else {
+                music.play();
+                playing = true;
+                soundBtn.innerHTML = '<svg viewBox="0 0 24 24"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z" fill="#000"/></svg>';
+            }
+        };
+    </script>
+</body>
+</html>
